@@ -84,7 +84,7 @@ public class MyValueMapper extends DataMapper {
     public void writeMap(Map dest, Object source){
         MyValue val = (MyValue)source;
         map.put("name", source.getName());
-        map.put("age", source.getAge())
+        map.put("age", source.getAge());
     }
 }
 ~~~
