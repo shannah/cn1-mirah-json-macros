@@ -156,7 +156,7 @@ public class TestMirahJSON {
             CalendarMapper cmapper = new CalendarMapper();
             EventMapper emapper = new EventMapper();
             cmapper.register(CalendarTest.Event.class, emapper);
-            
+            /*
             FieldMapper startEndFieldMapper = new FieldMapper(){
 
                 public Object getValue(Map map, String fieldName) {
@@ -178,10 +178,10 @@ public class TestMirahJSON {
                 }
                 
             };
+            */
             
-            
-            emapper.setFieldMapper("start", startEndFieldMapper);
-            emapper.setFieldMapper("end", startEndFieldMapper);
+            emapper.setFieldMapper("start", "/start/dateTime");
+            emapper.setFieldMapper("end", "/end/dateTime");
             
             //CalendarTest ctest = cmapper.readMap(gcalData, CalendarTest.class);
             CalendarTest ctest = cmapper.readJSONFromURL("https://www.googleapis.com/calendar/v3/calendars/weblite.ca_5778lgg76mo76r01osl63o9hbs@group.calendar.google.com/events?key=AIzaSyBzpCgeAgkMDYSZKSfpuosxt5iS0ON353E", CalendarTest.class);

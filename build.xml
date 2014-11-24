@@ -445,4 +445,10 @@
     <target name="webservice-wizard">
         <java classpath="CodeNameOneBuildClient.jar" classname="com.codename1.ws.wizard.WSWizard" dir="." fork="true" />
     </target>
+    
+    <target name="build-mirah-utils-jar" depends="jar">
+      <jar update="true" destfile="dist/CN1MirahJSON-macros.jar">
+        <zipfileset includes="**" src="../MirahMacroUtils/dist/MirahMacroUtils.jar"/>
+      </jar>
+    </target>
 </project>
