@@ -8,6 +8,13 @@
 2. Codename One DataMapper Lib
 3. Netbeans Mirah Module 1.0.26 or higher
 
+##Installation
+
+1. Install the CN1DataMapper library into your project.
+2. Copy CN1MirahJSON-macros.jar into your Codename One project's `lib/mirah/macros` directory.
+3. Right click your project in the project explorer, and select "Refresh Libs"
+4. Select "Clean & Build" project.
+
 ##Example
 
 A POJO (Plain Old Java Object).  `MyValue.java`:
@@ -42,7 +49,7 @@ MyValueMapper mapper = new MyValueMapper();
 MyValue value = mapper.readJSON("{'name' : 'John', 'age' : 11}", MyValue.class);
 
 Log.p("Name is "+value.getName()); // John
-Log.p("Age is "+value.getAge()); // 27
+Log.p("Age is "+value.getAge()); // 11
 ~~~
 
 That's it.
