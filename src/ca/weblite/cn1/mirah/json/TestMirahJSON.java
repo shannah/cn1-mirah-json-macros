@@ -100,6 +100,7 @@ public class TestMirahJSON {
         sinkMap.put("floatList", Arrays.asList(1f, 2f, 3f));
         sinkMap.put("doubleList", Arrays.asList(1.0, 2.0, 3.0));
         sinkMap.put("longList", Arrays.asList(1l, 2l, 3l));
+        sinkMap.put("publicInt", 2);
         
         Map<String,Integer> intMap = new HashMap<String,Integer>();
         intMap.put("One", 1);
@@ -127,6 +128,7 @@ public class TestMirahJSON {
         System.out.println("Double list loaded "+sc2.getDoubleList());
         System.out.println("Long list loaded "+sc2.getLongList());
         System.out.println("Int Map loaded "+sc2.getIntegerMap());
+        System.out.println("Public int laoded "+sc2.publicInt);
         sinkMap.put("stringArrayVal", Arrays.asList("foo", "bar", "fuzz"));
         SinkTestClass sc3 = sinkMapper.readMap(sinkMap, SinkTestClass.class);
         System.out.println("String array loaded from list "+Arrays.toString(sc3.getStringArrayVal()));

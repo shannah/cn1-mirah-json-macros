@@ -48,6 +48,8 @@ public class SinkTestClass {
     private Map<String,Integer> integerMap;
     
     
+    public int publicInt;
+    
 
     /**
      * @return the intVal
