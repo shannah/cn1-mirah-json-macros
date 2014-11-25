@@ -42,7 +42,7 @@ MyValueMapper mapper = new MyValueMapper();
 MyValue value = mapper.readJSON("{'name' : 'John', 'age' : 11}", MyValue.class);
 
 Log.p("Name is "+value.getName()); // John
-Log.p("Age is "+value.getAge()); // 27
+Log.p("Age is "+value.getAge()); // 11
 ~~~
 
 That's it.
