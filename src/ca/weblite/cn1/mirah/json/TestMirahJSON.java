@@ -153,6 +153,8 @@ public class TestMirahJSON {
         SinkTestClass sc6 = sinkMapper.readMap(sinkMap, SinkTestClass.class);
         System.out.println("Child strings are "+Arrays.toString(sc6.getChildren()));
         
+        System.out.println("Converted back to map: "+sinkMapper.writeMap(sc6));
+        
         try {
             //Map gcalData = this.getGCalJSON();
             CalendarMapper cmapper = new CalendarMapper();
@@ -188,6 +190,8 @@ public class TestMirahJSON {
             //CalendarTest ctest = cmapper.readMap(gcalData, CalendarTest.class);
             CalendarTest ctest = cmapper.readJSONFromURL("https://www.googleapis.com/calendar/v3/calendars/weblite.ca_5778lgg76mo76r01osl63o9hbs@group.calendar.google.com/events?key=AIzaSyBzpCgeAgkMDYSZKSfpuosxt5iS0ON353E", CalendarTest.class);
             System.out.println("Calendar name: "+ctest.getSummary());
+            
+            
             
             
         } catch (Exception ex){
