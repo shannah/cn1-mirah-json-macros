@@ -39,7 +39,7 @@ MyClass object = mapper.readJSON("{'name':'Steve', 'age':77}", MyClass.class);
 
 The resulting object would, as you might suspect, have `name`="Steve" and `age`=77.
 
-##Read JSON From URL
+###Read JSON From URL
 
 ~~~
 MyClass object = mapper.readJSONFromURL("http://example.com/mycontent.json", MyClass.class);
@@ -90,4 +90,74 @@ MyClass object = mapper.readJSON("{'name':'Steve', 'age':77, 'child': {'name':'J
 
 In this case, `object.name` is "Steve" and `object.child.name` is "John".
 
+###Using Setters and Getters
+
+Previous examples used public properties for simplicity of understanding the concepts, but you can also make your properties private, and supply setters and getters instead:
+
+~~~
+class MyClass {
+  private String name;
+  private int age;
+  private MyClass child;
+  
+  public String getName(){ return name;}
+  public int getAge(){ return age;}
+  public MyClass child(){ return child;}
+  
+  public void setName(String name){ this.name = name;}
+  public void setAge(int age){ this.age = age;}
+  public void setChild(MyClass child){ this.child = child;}
+}
+~~~
+
+And the mapper will work the same way.
+
+~~~
+MyClassMapper mapper = new MyClassMapper();
+MyClass object = mapper.readJSON("{'name':'Steve', 'age':77, 'child': {'name':'John', 'age':33}}", MyClass.class);
+~~~
+
+
+###Multiple Object Types in JSON Data
+
+Previous examples only showed mapping a JSON request to a single data type.  You can, however, register multiple classes to be decoded.  The DataMapper only parses content that it knows how to parse.  E.g. Consider the following class:
+
+~~~
+class MyClass {
+  public String name;
+  public int age;
+  public SomeOtherClass other;
+}
+~~~
+
+Then if we try to parse it using:
+
+~~~
+MyClassMapper mapper = new MyClassMapper();
+MyClass object = mapper.readJSON("{'name':'Steve', 'age':77, 'other': {'name':'John', 'age':33}}", MyClass.class);
+~~~
+
+We would have `object.name`="Steve", etc.., but `object.other` would be `null` even though the 'other' key was included in the JSON object data.  This is because the `MyClassMapper` object doesn't know how to parse the `SomeOtherClass` data.
+
+**Solution**:  Create a DataMapper class for the `SomeOtherClass` class using the Mirah `data_mapper` macro, then register an instance of this class with the `MyClassMapper`.  E.g.
+
+DataMappers.mirah:
+~~~
+package com.example
+data_mapper MyClass:MyClassMapper
+data_mapper SomeOtherClass:SomeOtherClassMapper  
+# Note:  The naming convention doesn't have to be followed
+# You can name your mapper classes anything you like!
+~~~
+
+Then
+
+~~~
+MyClassMapper mapper = new MyClassMapper();
+SomeOtherClassMapper socMapper = new SomeOtherClassMapper();
+mapper.register(SomeOtherClass.class, socMapper);
+MyClass object = mapper.readJSON("{'name':'Steve', 'age':77, 'other': {'name':'John', 'age':33}}", MyClass.class);
+~~~
+
+Now we would have `object.other` non-null (and assuming that it contains the correct properties, it would have loaded the appropriate data from the child object.).
 
