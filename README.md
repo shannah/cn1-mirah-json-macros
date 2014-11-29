@@ -10,7 +10,7 @@ This library and associated macro-pack provide pseudo-reflection features for Co
 
 ##Installation
 
-1. Install the CN1DataMapper library into your project.
+1. Install the [CN1DataMapper library](https://github.com/shannah/cn1-data-utils) into your project.
 2. Copy CN1MirahJSON-macros.jar into your Codename One project's `lib/mirah/macros` directory.
 3. Right click your project in the project explorer, and select "Refresh Libs"
 4. Select "Clean & Build" project.
