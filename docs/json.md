@@ -161,3 +161,46 @@ MyClass object = mapper.readJSON("{'name':'Steve', 'age':77, 'other': {'name':'J
 
 Now we would have `object.other` non-null (and assuming that it contains the correct properties, it would have loaded the appropriate data from the child object.).
 
+###Interfaces and Classes without No-Arg Constructors
+
+In order to use the patterns demonstrated above, you need to be using a concrete class with a non-arg constructor so that the DataMapper is able to instantiate the objects.  However, you can provide the data mapper with object factories that will be used to instantiate instances of the class as necessary:
+
+mapper.setObjectFactory(new ObjectFactory(){
+  public <T> T createObject(Class<T> cls){
+      if ( MyClass.class.equals(cls) ){
+          return new MyClass();
+      } else {
+          // etc...
+      }
+  }
+});
+
+
+###Reading to/from Maps
+
+Support for reading JSON is actually just a wrapper around the core Map reading and writing support inside the `DataMapper` API.  When reading JSON, it first parses it into a tree of Maps and Lists (Using the JSONParser class), then it uses the `DataMapper` object to convert the map to or from POJOs.  Sometimes it is handy to simply convert to-from Maps without actually converting to/from JSON.  In that case you can use the `readMap()` or `writeMap()` methods.
+
+~~~
+MyClass object = mapper.readMap(map, MyClass.class);
+~~~
+
+This will properly handle the cases where map data is in a format that came from parsing JSON (e.g. Lists) or as data that can more directly be mapped to the properties of `MyClass` (e.g. `String[]`).
+
+When writing to maps, you can choose whether you just want a shallow copy (e.g. don't convert child objects, arrays, maps, etc.. to JSON-friendly format - just leave them alone), or a deep copy (e.g. convert all arrays corresponding list types, only copy objects that have a mapper registered, and perform the appropriate conversion for those nested objects).  
+
+**Shallow Copy**:
+
+~~~
+mapper.setOutputJSONReady(false);
+Map map = mapper.writeMap(object);
+// or write to existing map:  mapper.writeMap(map, object);
+~~~
+
+**Deep Copy**:
+
+~~~
+mapper.setOutputJSONReady(true);
+Map map = mapper.writeMap(object);
+// or write to existing map:  mapper.writeMap(map, object);
+~~~
+
