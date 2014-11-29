@@ -1,4 +1,4 @@
-#JSON Parsing
+#Codename One JSON <-> POJO Converter
 
 > Use the `data_mapper` macro in conjunction with the `DataMapper` class to parse JSON data directly to Java Objects (POJOs). (Similar to [Jackson](https://github.com/FasterXML/jackson))
 
