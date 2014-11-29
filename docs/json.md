@@ -205,3 +205,46 @@ Map map = mapper.writeMap(object);
 // or write to existing map:  mapper.writeMap(map, object);
 ~~~
 
+##How does it work?
+
+This library adds a Mirah macro called `data_mapper` that you can use inside your Codename One project.  It automatically generates a `DataMapper` class for the class that you provide.  Using compile-time reflection, the macro is able to create the appropriate read() methods to convert appropriate JSON data into instances of the specified class.
+
+The line:
+
+~~~
+data_mapper MyValue : MyValueMapper
+~~~
+
+creates a class named `MyValueMapper` which extends `DataMapper`, and knows how to convert objects of type `MyValue` to and from a generic object graph consisting of Maps and Lists (and thus arbitrary JSON data).
+
+The above example can also be accomplished without the `data_mapper` macro.  You would just have to implement the `MyValueMapper` class manually.  The implementation would be something like the following:
+
+~~~
+package com.myapp;
+
+public class MyValueMapper extends DataMapper {
+    public MyValueMapper(){
+        register(MyValue.class, MyValueMapper.class);
+    }
+    
+    @Override
+    public void readMap(Map source, Object dest){
+        MyValue val = (MyValue)dest;
+        if ( exists(source, "name") ){
+            val.setName((String)source.get("name"));
+        }
+        if ( exists(source, "age") ){
+            val.setAge(NumberUtil.intValue(source.get("age")));
+        }
+    }
+    
+    @Override
+    public void writeMap(Map dest, Object source){
+        MyValue val = (MyValue)source;
+        map.put("name", source.getName());
+        map.put("age", source.getAge());
+    }
+}
+~~~
+
+This example only includes a single POJO with two properties, but it should also be apparent that writing this type of binding code is both boring and prone to errors.  Using the `data_mapper` macro, therefore will help you reduce the amount of code you write while simultaneously reducing the number of errors.
