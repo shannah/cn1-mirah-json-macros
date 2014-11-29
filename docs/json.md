@@ -165,6 +165,7 @@ Now we would have `object.other` non-null (and assuming that it contains the cor
 
 In order to use the patterns demonstrated above, you need to be using a concrete class with a non-arg constructor so that the DataMapper is able to instantiate the objects.  However, you can provide the data mapper with object factories that will be used to instantiate instances of the class as necessary:
 
+~~~
 mapper.setObjectFactory(new ObjectFactory(){
   public <T> T createObject(Class<T> cls){
       if ( MyClass.class.equals(cls) ){
@@ -174,7 +175,7 @@ mapper.setObjectFactory(new ObjectFactory(){
       }
   }
 });
-
+~~~
 
 ###Reading to/from Maps
 
