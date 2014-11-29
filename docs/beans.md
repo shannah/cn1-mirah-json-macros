@@ -8,8 +8,49 @@ The `bean_class` macro allows you to generate a sort of class descriptor for any
 
 MyClass.java
 ~~~
+package com.example;
 public class MyClass {
   public String name;
   public int age;
 }
 ~~~
+
+MyMappers.mirah:
+~~~
+package com.example
+bean_class MyClass:MyBeanClass
+~~~
+
+Main.java
+
+~~~
+// First register your Bean class... Probably put this in your app's init() method
+BeanClass.register(MyClass.class, new MyBeanClass());
+
+// Create a new MyClass Object: person1
+MyClass person1 = new MyClass();
+person1.name = "Steve";
+person1.age = 12;
+
+// Now wrap the person1 object inside a Bean
+BeanObject bean1 = BeanClass.wrap(person1);
+
+// We can use it like a Map now
+bean1.get("name");  // Steve
+bean1.get("age");   // 12
+
+// We can update the fields too
+bean1.put("name", "John");
+person1.name;  // John
+
+// Create a 2nd object and wrap it in a bean
+MyClass person2 = new MyClass();
+BeanObject bean2 = BeanClass.wrap(person2);
+
+// Copy all of the data from the first person into the second person
+bean2.putAll(bean1);
+person2.name; // John
+bean2.get("name"); // John
+person2.age; // 12
+~~~
+
