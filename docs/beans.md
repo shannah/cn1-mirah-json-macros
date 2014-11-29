@@ -9,7 +9,7 @@ The `bean_class` macro allows you to generate a sort of class descriptor for any
 1. Reflection-like support for Codename One
 2. Generate class descriptors that allow you to see the properties of a given class at runtime.
 3. Wrappers for POJOs that implement `java.util.Map` so that you can interact with POJOs using a Map api.
-4. Support for public properties, getters, and accessors.
+4. Support for public properties, getters, and setters.
 5. Properties are readable and/or writable based on whether it can be mutated via a public API.  E.g. a property that is public, will be both readable and writable.  A property that is private, and has a getter, but no setter, will be read-only, and a property that only has a setter, will be write-only (can't be read).
 
 ##Simple Example
