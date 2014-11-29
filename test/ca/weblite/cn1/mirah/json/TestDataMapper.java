@@ -20,8 +20,13 @@ public class TestDataMapper extends AbstractTest  {
         mapper.setReadKeyConversions(Arrays.asList(DataMapper.CONVERSION_CAMEL_TO_SNAKE));
         SinkTestClass test = mapper.readJSON("{\"name\": \"Steve\", \"public_int\" : 3}", SinkTestClass.class);
         assertBool(test != null, "readJSON returned a null object");
-        
         assertBool(test.publicInt == 3);
+        
+        test = mapper.readJSON("{\"childrenList\": [{\"name\":\"Child 1\"}, {\"name\":\"Child 2\"}}", SinkTestClass.class);
+        assertBool( test.getChildrenList() != null );
+        assertBool( test.getChildrenList().size() == 2);
+       
+    
         return true;
     }
     

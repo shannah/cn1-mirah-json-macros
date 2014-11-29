@@ -36,6 +36,7 @@ public class SinkTestClass {
     private SinkTestClass child;
     
     private SinkTestClass[] children;
+    private List<SinkTestClass> childrenList;
     
     private List<String> stringList;
     private List<Integer> intList;
@@ -437,5 +438,19 @@ public class SinkTestClass {
      */
     public void setIntegerMap(Map<String,Integer> integerMap) {
         this.integerMap = integerMap;
+    }
+
+    /**
+     * @return the childrenList
+     */
+    public List<SinkTestClass> getChildrenList() {
+        return childrenList;
+    }
+
+    /**
+     * @param childrenList the childrenList to set
+     */
+    public void setChildrenList(List<SinkTestClass> childrenList) {
+        this.childrenList = childrenList;
     }
 }
