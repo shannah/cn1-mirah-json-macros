@@ -1,6 +1,8 @@
 package ca.weblite.cn1.mirah.json;
 
 
+import ca.weblite.codename1.bean.BeanClass;
+import ca.weblite.codename1.bean.BeanObject;
 import ca.weblite.codename1.mapper.FieldMapper;
 import ca.weblite.codename1.mapper.Mapper;
 import ca.weblite.codename1.mapper.NumberUtil;
@@ -8,6 +10,7 @@ import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.Log;
 import com.codename1.io.NetworkManager;
+import com.codename1.processing.Result;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
@@ -154,6 +157,7 @@ public class TestMirahJSON {
         System.out.println("Child strings are "+Arrays.toString(sc6.getChildren()));
         
         System.out.println("Converted back to map: "+sinkMapper.writeMap(sc6));
+        System.out.println(Result.fromContent(sinkMapper.writeMap(sc6)).toString());
         
         try {
             //Map gcalData = this.getGCalJSON();
@@ -192,7 +196,14 @@ public class TestMirahJSON {
             System.out.println("Calendar name: "+ctest.getSummary());
             
             
+            SinkTestBeanClass beanClass = new SinkTestBeanClass();
+            BeanClass.register(SinkTestClass.class, beanClass);
+            BeanObject obj = beanClass.wrap(sc6);
             
+            System.out.println("The keys for sinkTest are "+obj.keySet());
+            System.out.println("Public Int is "+sc6.getIntVal());
+            obj.put("intVal", 44);
+            System.out.println("After setting to 44, the bean object has "+obj.get("intVal")+" and the object has "+sc6.getIntVal());
             
         } catch (Exception ex){
             Log.e(ex);

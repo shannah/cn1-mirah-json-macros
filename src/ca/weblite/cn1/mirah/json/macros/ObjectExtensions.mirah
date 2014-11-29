@@ -11,6 +11,7 @@ import ca.weblite.mirah.utils.MappableBuilder
 import ca.weblite.mirah.utils.DataMapperBuilder
 import ca.weblite.mirah.utils.ElemAssignFinder
 import ca.weblite.mirah.utils.ArrayUtility
+import ca.weblite.mirah.utils.BeanBuilder
 import ca.weblite.mirah.utils.MethodFinder
   
 /**
@@ -35,6 +36,17 @@ class ObjectExtensions
     nodes
   end
   
+  
+  macro def self.bean_class(vals:Hash)
+    nodes = NodeList.new
+    vals.size.times do |i|
+      e = vals.get i
+      builder = BeanBuilder.new(@mirah, @call, TypeName(e.key), TypeName(e.value))
+      nodes.add builder.build
+    end
+    nodes
+  end
+  
   macro def self.to_primitive_array(target:Node, destType:TypeName)
     util = ArrayUtility.new(@mirah, @call)
     util.to_primitive_array(target, destType)
@@ -53,6 +65,7 @@ class ObjectExtensions
     util = ArrayUtility.new(@mirah, @call)
     util.unbox_array(target, destType)
   end
+  
   
   macro def self.cast_array(target, destType:TypeName)
     

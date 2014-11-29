@@ -143,16 +143,12 @@
         </copy>
         <delete dir="${mirah.tmp.macros.classes}"/>
         <mkdir dir="${mirah.tmp.macros.classes}"/>
-        <echo message="Compiling Macros..."/>
-        <echo message="Class path: ${javac.classpath}:${mirah.tmp.macros.classes}"/>
-        
         <mirahc dest="${mirah.tmp.macros.classes}" 
                 postrunjavac="false" 
                 macrojardir="${mirah.macros.jardir}"
                 javasourcespath="${src.dir}"
                 javastubdir="${mirah.java.stub.dir}"
                 classcachedir="${mirah.class.cache.dir}" 
-                macroclasspath="${javac.classpath}:${mirah.tmp.macros.classes}"
             >
             <javac classpath="${javac.classpath}:${mirah.tmp.macros.classes}" 
                    bootclasspath="lib/CLDC11.jar"
@@ -174,7 +170,6 @@
         <copy todir="${mirah.tmp.macros.src}">
             <fileset dir="${src.dir}" includes="**/macros/Bootstrap.mirah"/>
         </copy>
-        <echo message="Compiling Macro Bootstraps..."/>
         <mirahc dest="${mirah.tmp.macros.classes}" 
                 postrunjavac="false" 
                 macrojardir="${mirah.macros.jardir}" 
@@ -198,9 +193,7 @@
                 
             </javac>
         </mirahc>
-        <echo message="Compiling Rest of the Files"/>
-        <echo message="Macro classpath: ${mirah.tmp.macros.classes}"/>
-        <echo message="Classpath: ${javac.classpath}"/>
+        
         <mirahc dest="lib/impl/cls" 
                 postrunjavac="false" 
                 macrojardir="lib/mirah/macros" 

@@ -48,3 +48,4 @@ data_mapper TestJSONClass:JSONDataMapper
 data_mapper SinkTestClass:SinkTestDataMapper
 data_mapper CalendarTest:CalendarMapper
 data_mapper Event:EventMapper
+bean_class SinkTestClass:SinkTestBeanClass
