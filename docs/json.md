@@ -1,6 +1,6 @@
 #JSON Parsing
 
-Use the `data_mapper` macro in conjunction with the `DataMapper` class to parse JSON data directly to Java Objects (POJOs).
+> Use the `data_mapper` macro in conjunction with the `DataMapper` class to parse JSON data directly to Java Objects (POJOs).
 
 ###Features
 
