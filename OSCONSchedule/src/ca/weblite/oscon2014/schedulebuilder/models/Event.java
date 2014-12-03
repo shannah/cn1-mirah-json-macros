@@ -5,6 +5,7 @@
  */
 package ca.weblite.oscon2014.schedulebuilder.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
@@ -23,6 +24,7 @@ public class Event {
     private Date timeStop;
     
     private List<String> speakers;
+    private List<Speaker> cachedSpeakers;
     private List<String> categories;
 
     /**
@@ -165,5 +167,23 @@ public class Event {
     public void setVenueSerial(String venueSerial) {
         this.venueSerial = venueSerial;
     }
+    
+    
+    public List<Speaker> getSpeakers(Schedule schedule){
+        if ( cachedSpeakers == null ){
+            cachedSpeakers = new ArrayList<Speaker>();
+            if ( speakers != null ){
+                for ( String speakerId : speakers ){
+                    Speaker speaker = schedule.getSpeaker(speakerId);
+                    if ( speaker != null ){
+                        cachedSpeakers.add(speaker);
+                    }
+                }
+            }
+        }
+        return cachedSpeakers;
+        
+    }
+    
     
 }

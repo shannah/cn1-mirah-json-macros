@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resource majorVersion="1" minorVersion="6" useXmlUI="false">
+    <image name="calendar52 (1).png"  />
+    <ui name="EventDetails" />
+    <ui name="Main" />
+    <theme name="Theme">
+        <val key="@commandBehavior" value="Side" />
+        <val key="@includeNativeBool" value="true" />
+        <val key="CategoryCommand.bgColor" value="0" />
+        <val key="CategoryCommand.dis#bgColor" value="0" />
+        <gradient key="CategoryCommand.dis#bgGradient" color1="0" color2="0" posX="0.5" posY="0.5" radius="1.0" />
+        <val key="CategoryCommand.dis#bgType" value="0" />
+        <val key="CategoryCommand.dis#fgColor" value="ffffff" />
+        <val key="CategoryCommand.dis#transparency" value="255" />
+        <val key="CategoryCommand.fgColor" value="ffffff" />
+        <val key="CategoryCommand.press#bgColor" value="0" />
+        <gradient key="CategoryCommand.press#bgGradient" color1="0" color2="0" posX="0.5" posY="0.5" radius="1.0" />
+        <val key="CategoryCommand.press#bgType" value="0" />
+        <val key="CategoryCommand.press#fgColor" value="ffffff" />
+        <val key="CategoryCommand.press#transparency" value="255" />
+        <val key="CategoryCommand.sel#bgColor" value="0" />
+        <gradient key="CategoryCommand.sel#bgGradient" color1="0" color2="0" posX="0.5" posY="0.5" radius="1.0" />
+        <val key="CategoryCommand.sel#bgType" value="0" />
+        <val key="CategoryCommand.sel#fgColor" value="ffffff" />
+        <val key="CategoryCommand.sel#transparency" value="255" />
+        <val key="CategoryCommand.transparency" value="0" />
+        <val key="LoadingText.align" value="4" />
+        <val key="LoadingText.fgColor" value="000000" />
+        <val key="SplashLoading.align" value="4" />
+        <val key="SplashLoading.fgColor" value="000000" />
+        <val key="SplashMainContent.align" value="4" />
+        <val key="SplashNorth.align" value="4" />
+        <val key="TitleArea.bgColor" value="000000" />
+    </theme>
+</resource>

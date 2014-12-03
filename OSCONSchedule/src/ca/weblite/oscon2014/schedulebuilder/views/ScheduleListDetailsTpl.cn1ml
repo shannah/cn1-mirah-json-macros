@@ -1,0 +1,16 @@
+<!doctype cn1ml>
+<html>
+    <head>
+    </head>
+    <body layout="BorderLayout">
+        <div layout-constraint="n" layout="y">
+            <span class="SpanLabel" name="eventName">Event Name</span>
+            <label name="eventDate">Event Date</label>
+            <label name="eventLocation">Event Location</label>
+            <span  class="SpanLabel" name="speakers">Speaker</span>
+            
+        </div>
+        <span class="SpanLabel" layout-constraint="c" name="eventDescription"></span>
+        
+    </body>
+</html>

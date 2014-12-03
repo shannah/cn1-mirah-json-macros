@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" name="Main" cloudDestinationProperty="Main" scrollableY="false" layout="BorderLayout" borderLayoutAbsoluteCenter="false" title="List" >
+  <component type="Tabs" name="dateTabs" cloudDestinationProperty="dateTabs" >
+    <layoutConstraint value="Center" />
+    <component type="MultiList" name="MultiList" tabTitle="Tab0" cloudDestinationProperty="MultiList" >
+      <mapItems>
+        <stringItem key="Line2" value="more..." />
+        <stringItem key="Line1" value="Entry 1" />
+      </mapItems>
+      <mapItems>
+        <stringItem key="Line2" value="more..." />
+        <stringItem key="Line1" value="Entry 2" />
+      </mapItems>
+      <mapItems>
+        <stringItem key="Line2" value="more..." />
+        <stringItem key="Line1" value="Entry 3" />
+      </mapItems>
+    </component>
+  </component>
+</component>

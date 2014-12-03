@@ -1,0 +1,12 @@
+<!doctype cn1ml>
+<html>
+    <head>
+    </head>
+    <body layout="BorderLayout" uiid="SplashBackground">
+        <div layout-constraint="n" uiid="SplashNorth"><label>Open Event Schedule Demo</label></div>
+        <div layout-constraint="c" name="mainContent" uiid="SplashMainContent" layout="y">
+           
+        </div>
+        <div layout-constraint="s" uiid="SplashLoading" layout="y"><label uiid="LoadingText">Loading Schedule ...</label></div>
+    </body>
+</html>

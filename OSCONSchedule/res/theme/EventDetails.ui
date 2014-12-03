@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" name="EventDetails" cloudDestinationProperty="EventDetails" layout="BorderLayout" borderLayoutAbsoluteCenter="false" title="Event Details" >
+  <component type="Container" name="Container" cloudDestinationProperty="Container" layout="BoxLayout" boxLayoutAxis="Y" >
+    <layoutConstraint value="North" />
+    <component type="Label" name="eventName" cloudDestinationProperty="eventName" text="Name" >
+    </component>
+    <component type="Label" name="dateTime" cloudDestinationProperty="dateTime" text="Date &amp; Time" >
+    </component>
+    <component type="Container" name="Container1" cloudDestinationProperty="Container1" >
+      <component type="Label" name="speaker" cloudDestinationProperty="speaker" text="Speaker" >
+      </component>
+      <component type="Label" name="affiliation" cloudDestinationProperty="affiliation" text="Affiliation" >
+      </component>
+    </component>
+    <component type="Label" name="room" cloudDestinationProperty="room" text="Room" >
+    </component>
+  </component>
+  <component type="WebBrowser" name="description" cloudDestinationProperty="description" >
+    <layoutConstraint value="Center" />
+  </component>
+</component>
