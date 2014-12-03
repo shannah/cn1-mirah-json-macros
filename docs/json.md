@@ -36,7 +36,7 @@ data_mapper MyClass:MyClassMapper
 Main.java:
 ~~~
 MyClassMapper mapper = new MyClassMapper();
-MyClass object = mapper.readJSON("{'name':'Steve', 'age':77}", MyClass.class);
+MyClass object = mapper.readJSON("{\"name\":\"Steve\", \"age\":77}", MyClass.class);
 ~~~
 
 The resulting object would, as you might suspect, have `name`="Steve" and `age`=77.
@@ -64,7 +64,7 @@ When the JSON data fields have a different than the POJO fields:
 MyClassMapper mapper = new MyClassMapper();
 mapper.setFieldMapper('name', 'username');
 mapper.setFieldMapper('age', 'person_age');
-MyClass object = mapper.readJSON("{'username':'Steve', 'person_age':77}", MyClass.class);
+MyClass object = mapper.readJSON("{\"username\":\"Steve\", \"person_age\":77}", MyClass.class);
 ~~~
 
 When the JSON data have a different heirarchy:
@@ -72,7 +72,7 @@ When the JSON data have a different heirarchy:
 ~~~
 MyClassMapper mapper = new MyClassMapper();
 mapper.setFieldMapper('age', '/details/age');
-MyClass object = mapper.readJSON("{'name':'Steve', 'details': {'age':77}}", MyClass.class);
+MyClass object = mapper.readJSON("{\"name\":\"Steve\", \"details\": {\"age\":77}}", MyClass.class);
 ~~~
 
 ###Nested Data Structure
@@ -87,7 +87,7 @@ class MyClass {
 
 ~~~
 MyClassMapper mapper = new MyClassMapper();
-MyClass object = mapper.readJSON("{'name':'Steve', 'age':77, 'child': {'name':'John', 'age':33}}", MyClass.class);
+MyClass object = mapper.readJSON("{\"name\":\"Steve\", \"age\":77, \"child\": {\"name\":\"John\", \"age\":33}}", MyClass.class);
 ~~~
 
 In this case, `object.name` is "Steve" and `object.child.name` is "John".
@@ -116,7 +116,7 @@ And the mapper will work the same way.
 
 ~~~
 MyClassMapper mapper = new MyClassMapper();
-MyClass object = mapper.readJSON("{'name':'Steve', 'age':77, 'child': {'name':'John', 'age':33}}", MyClass.class);
+MyClass object = mapper.readJSON("{\"name\":\"Steve\", \"age\":77, \"child\": {\"name\":\"John\", \"age\":33}}", MyClass.class);
 ~~~
 
 
@@ -136,7 +136,7 @@ Then if we try to parse it using:
 
 ~~~
 MyClassMapper mapper = new MyClassMapper();
-MyClass object = mapper.readJSON("{'name':'Steve', 'age':77, 'other': {'name':'John', 'age':33}}", MyClass.class);
+MyClass object = mapper.readJSON("{\"name\":\"Steve\", \"age\":77, \"other\": {\"name\":\"John\", \"age\":33}}", MyClass.class);
 ~~~
 
 We would have `object.name`="Steve", etc.., but `object.other` would be `null` even though the 'other' key was included in the JSON object data.  This is because the `MyClassMapper` object doesn't know how to parse the `SomeOtherClass` data.
@@ -158,7 +158,7 @@ Then
 MyClassMapper mapper = new MyClassMapper();
 SomeOtherClassMapper socMapper = new SomeOtherClassMapper();
 mapper.register(SomeOtherClass.class, socMapper);
-MyClass object = mapper.readJSON("{'name':'Steve', 'age':77, 'other': {'name':'John', 'age':33}}", MyClass.class);
+MyClass object = mapper.readJSON("{\"name\":\"Steve\", \"age\":77, \"other\": {\"name\":\"John\", \"age\":33}}", MyClass.class);
 ~~~
 
 Now we would have `object.other` non-null (and assuming that it contains the correct properties, it would have loaded the appropriate data from the child object.).
