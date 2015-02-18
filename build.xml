@@ -448,7 +448,7 @@
     
     <target name="build-mirah-utils-jar" depends="jar">
       <jar update="true" destfile="dist/CN1MirahJSON-macros.jar">
-        <zipfileset includes="**" src="../MirahMacroUtils/dist/MirahMacroUtils.jar"/>
+        <zipfileset includes="**" src="/Volumes/Windows VMS/Documents/Shared/NetBeansProjects/mirah_macro_utils/MirahMacroUtils/dist/MirahMacroUtils.jar"/>
       </jar>
     </target>
 </project>
