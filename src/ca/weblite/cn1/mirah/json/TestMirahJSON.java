@@ -205,6 +205,11 @@ public class TestMirahJSON {
             obj.put("intVal", 44);
             System.out.println("After setting to 44, the bean object has "+obj.get("intVal")+" and the object has "+sc6.getIntVal());
             
+            
+            CalendarTest ctest2 = cmapper.readJSON("{\"updated\":\"2012-04-23T18:25:43.511Z\"}", CalendarTest.class);
+            System.out.println("Date with millis is "+ctest2.getUpdated());
+            System.out.println("Date as millis is "+ctest2.getUpdated().getTime());
+            
         } catch (Exception ex){
             Log.e(ex);
         }
