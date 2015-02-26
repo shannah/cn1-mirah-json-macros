@@ -99,11 +99,17 @@ public class TestMirahJSON {
         sinkMap.put("boxedDoubleVal", 4.0);
         sinkMap.put("intArrayVal", new int[]{1,2,3});
         sinkMap.put("stringList", Arrays.asList("one", "two", "Three"));
+        sinkMap.put("pubStringList", Arrays.asList("one", "two", "Three"));
         sinkMap.put("intList", Arrays.asList(1,2,3));
         sinkMap.put("floatList", Arrays.asList(1f, 2f, 3f));
         sinkMap.put("doubleList", Arrays.asList(1.0, 2.0, 3.0));
         sinkMap.put("longList", Arrays.asList(1l, 2l, 3l));
         sinkMap.put("publicInt", 2);
+        
+        Map pubStringMap = new HashMap<String,String>();
+        pubStringMap.put("one", "oneval");
+        pubStringMap.put("two", "twoval");
+        sinkMap.put("pubStringMap", pubStringMap);
         
         Map<String,Integer> intMap = new HashMap<String,Integer>();
         intMap.put("One", 1);
@@ -113,8 +119,14 @@ public class TestMirahJSON {
         sinkMap.put("integerMap", intMap);
         
         
+        sinkMapper.setListValueType("pubStringList", String.class);
+        sinkMapper.setListValueType("pubStringMap", String.class);
+        
         SinkTestClass sc = sinkMapper.readMap(sinkMap, SinkTestClass.class);
         System.out.println(sc.toString());
+        
+        Map scOut = sinkMapper.writeMap(sc);
+        System.out.println("ScOut is "+scOut);
         
         Integer[] test1 = new Integer[]{1,2,3};
         int[] results = NumberUtil.toIntArray(test1);
@@ -191,6 +203,8 @@ public class TestMirahJSON {
             emapper.setFieldMapper("start", "/start/dateTime");
             emapper.setFieldMapper("end", "/end/dateTime");
             
+            
+            
             //CalendarTest ctest = cmapper.readMap(gcalData, CalendarTest.class);
             CalendarTest ctest = cmapper.readJSONFromURL("https://www.googleapis.com/calendar/v3/calendars/weblite.ca_5778lgg76mo76r01osl63o9hbs@group.calendar.google.com/events?key=AIzaSyBzpCgeAgkMDYSZKSfpuosxt5iS0ON353E", CalendarTest.class);
             System.out.println("Calendar name: "+ctest.getSummary());
@@ -209,6 +223,10 @@ public class TestMirahJSON {
             CalendarTest ctest2 = cmapper.readJSON("{\"updated\":\"2012-04-23T18:25:43.511Z\"}", CalendarTest.class);
             System.out.println("Date with millis is "+ctest2.getUpdated());
             System.out.println("Date as millis is "+ctest2.getUpdated().getTime());
+            
+            Map tmap = cmapper.writeMap(ctest2);
+            System.out.println(tmap);
+            
             
         } catch (Exception ex){
             Log.e(ex);

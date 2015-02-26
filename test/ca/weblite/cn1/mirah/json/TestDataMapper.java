@@ -6,8 +6,10 @@
 package ca.weblite.cn1.mirah.json;
 
 import ca.weblite.codename1.mapper.DataMapper;
+import com.codename1.io.Log;
 import com.codename1.testing.AbstractTest;
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  *
@@ -25,6 +27,13 @@ public class TestDataMapper extends AbstractTest  {
         test = mapper.readJSON("{\"childrenList\": [{\"name\":\"Child 1\"}, {\"name\":\"Child 2\"}}", SinkTestClass.class);
         assertBool( test.getChildrenList() != null );
         assertBool( test.getChildrenList().size() == 2);
+        
+        
+        CalendarMapper cmapper = new CalendarMapper();
+        CalendarTest ctest = mapper.readJSON("{\"updated\":\"2012-04-23T18:25:43.511Z\"}", CalendarTest.class);
+        Log.p(("updated is "+ctest.getUpdated()));
+        
+        
        
     
         return true;

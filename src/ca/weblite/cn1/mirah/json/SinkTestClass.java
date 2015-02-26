@@ -46,6 +46,9 @@ public class SinkTestClass {
     private List<Character> charList;
     private List<Long> longList;
     
+    public List<String> pubStringList;
+    public Map<String,String> pubStringMap;
+    
     private Map<String,Integer> integerMap;
     
     
@@ -268,7 +271,9 @@ public class SinkTestClass {
                 .append(", shortVal: ").append(shortVal)
                 .append(", floatVal: ").append(floatVal)
                 .append(", doubleVal: ").append(doubleVal)
-                .append(", stringVal: ").append(stringVal);
+                .append(", stringVal: ").append(stringVal)
+                .append(", pubStringList: ").append(pubStringList)
+                .append(", pubStringMap: ").append(pubStringMap);
         return sb.toString();
     }
 
