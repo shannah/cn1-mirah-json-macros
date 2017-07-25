@@ -119,7 +119,7 @@ public class TestMirahJSON {
         sinkMap.put("integerMap", intMap);
         
         
-        sinkMapper.setListValueType("pubStringList", String.class);
+        //sinkMapper.setListValueType("pubStringList", String.class);
         sinkMapper.setListValueType("pubStringMap", String.class);
         
         SinkTestClass sc = sinkMapper.readMap(sinkMap, SinkTestClass.class);

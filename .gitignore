@@ -5,3 +5,6 @@
 /build
 /src/._mirah_fake_files_cache
 /lib/impl
+CN1MirahJSONDemo/lib/impl/cls
+.DS_Store
+private

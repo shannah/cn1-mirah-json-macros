@@ -53,6 +53,7 @@ public class SinkTestClass {
     
     
     public int publicInt;
+    private String[] stringArr;
     
 
     /**
@@ -457,5 +458,19 @@ public class SinkTestClass {
      */
     public void setChildrenList(List<SinkTestClass> childrenList) {
         this.childrenList = childrenList;
+    }
+
+    /**
+     * @return the stringArr
+     */
+    public String[] getStringArr() {
+        return stringArr;
+    }
+
+    /**
+     * @param stringArr the stringArr to set
+     */
+    public void setStringArr(String[] stringArr) {
+        this.stringArr = stringArr;
     }
 }
