@@ -446,9 +446,9 @@
         <java classpath="CodeNameOneBuildClient.jar" classname="com.codename1.ws.wizard.WSWizard" dir="." fork="true" />
     </target>
     
-    <target name="build-mirah-utils-jar" depends="jar">
+    <target name="build-mirah-utils-jar" depends="jar" description="Build Mirah Utils Jar">
       <jar update="true" destfile="dist/CN1MirahJSON-macros.jar">
-        <zipfileset includes="**" src="/Volumes/Windows VMS/Documents/Shared/NetBeansProjects/mirah_macro_utils/MirahMacroUtils/dist/MirahMacroUtils.jar"/>
+        <zipfileset includes="**" src="lib/mirah/macros/MirahMacroUtils.jar"/>
       </jar>
     </target>
 </project>
