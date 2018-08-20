@@ -1,10 +1,10 @@
-#Codename One JSON <-> POJO Converter
+# Codename One JSON <-> POJO Converter
 
 > Use the `data_mapper` macro in conjunction with the `DataMapper` class to parse JSON data directly to Java Objects (POJOs). (Similar to [Jackson](https://github.com/FasterXML/jackson))
 
 [Return to README](../README.md)
 
-###Features
+### Features
 
 1. Can convert JSON data to POJOs.
 2. Can convert POJOs to JSON data.
@@ -15,7 +15,7 @@
 7. Auto boxing/unboxing of primitive values as necessary.
 8. Auto conversion from List to arrays as necessary.
 
-##Simple Example
+## Simple Example
 
 MyClass.java:
 ~~~
@@ -41,13 +41,13 @@ MyClass object = mapper.readJSON("{\"name\":\"Steve\", \"age\":77}", MyClass.cla
 
 The resulting object would, as you might suspect, have `name`="Steve" and `age`=77.
 
-###Read JSON From URL
+### Read JSON From URL
 
 ~~~
 MyClass object = mapper.readJSONFromURL("http://example.com/mycontent.json", MyClass.class);
 ~~~
 
-###Read JSON From Connection Request
+### Read JSON From Connection Request
 
 ~~~
 ConnectionRequest req = new ConnectionRequest();
@@ -56,7 +56,7 @@ req.setPost(false);
 MyClass object = mapper.readJSONFromConnection(req, MyClass.class);
 ~~~
 
-###Field Mapping
+### Field Mapping
 
 When the JSON data fields have a different than the POJO fields:
 
@@ -75,7 +75,7 @@ mapper.setFieldMapper('age', '/details/age');
 MyClass object = mapper.readJSON("{\"name\":\"Steve\", \"details\": {\"age\":77}}", MyClass.class);
 ~~~
 
-###Nested Data Structure
+### Nested Data Structure
 
 ~~~
 class MyClass {
@@ -92,7 +92,7 @@ MyClass object = mapper.readJSON("{\"name\":\"Steve\", \"age\":77, \"child\": {\
 
 In this case, `object.name` is "Steve" and `object.child.name` is "John".
 
-###Using Setters and Getters
+### Using Setters and Getters
 
 Previous examples used public properties for simplicity of understanding the concepts, but you can also make your properties private, and supply setters and getters instead:
 
@@ -120,7 +120,7 @@ MyClass object = mapper.readJSON("{\"name\":\"Steve\", \"age\":77, \"child\": {\
 ~~~
 
 
-###Multiple Object Types in JSON Data
+### Multiple Object Types in JSON Data
 
 Previous examples only showed mapping a JSON request to a single data type.  You can, however, register multiple classes to be decoded.  The DataMapper only parses content that it knows how to parse.  E.g. Consider the following class:
 
@@ -163,7 +163,7 @@ MyClass object = mapper.readJSON("{\"name\":\"Steve\", \"age\":77, \"other\": {\
 
 Now we would have `object.other` non-null (and assuming that it contains the correct properties, it would have loaded the appropriate data from the child object.).
 
-###Interfaces and Classes without No-Arg Constructors
+### Interfaces and Classes without No-Arg Constructors
 
 In order to use the patterns demonstrated above, you need to be using a concrete class with a non-arg constructor so that the DataMapper is able to instantiate the objects.  However, you can provide the data mapper with object factories that will be used to instantiate instances of the class as necessary:
 
@@ -179,7 +179,7 @@ mapper.setObjectFactory(new ObjectFactory(){
 });
 ~~~
 
-###Reading to/from Maps
+### Reading to/from Maps
 
 Support for reading JSON is actually just a wrapper around the core Map reading and writing support inside the `DataMapper` API.  When reading JSON, it first parses it into a tree of Maps and Lists (Using the JSONParser class), then it uses the `DataMapper` object to convert the map to or from POJOs.  Sometimes it is handy to simply convert to-from Maps without actually converting to/from JSON.  In that case you can use the `readMap()` or `writeMap()` methods.
 
@@ -207,7 +207,7 @@ Map map = mapper.writeMap(object);
 // or write to existing map:  mapper.writeMap(map, object);
 ~~~
 
-##How does it work?
+## How does it work?
 
 This library adds a Mirah macro called `data_mapper` that you can use inside your Codename One project.  It automatically generates a `DataMapper` class for the class that you provide.  Using compile-time reflection, the macro is able to create the appropriate read() methods to convert appropriate JSON data into instances of the specified class.
 
@@ -252,7 +252,7 @@ public class MyValueMapper extends DataMapper {
 This example only includes a single POJO with two properties, but it should also be apparent that writing this type of binding code is both boring and prone to errors.  Using the `data_mapper` macro, therefore will help you reduce the amount of code you write while simultaneously reducing the number of errors.
 
 
-##See Also
+## See Also
 
 * [JavaDocs](https://rawgit.com/shannah/cn1-data-utils/master/dist/javadoc/index.html)
 * [README](../README.md)
